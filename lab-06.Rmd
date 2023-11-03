@@ -30,8 +30,9 @@ diamonds <- diamonds %>% rename(
 diamonds %>% filter('x, y, z' == 0) %>%
   count()
 #There are no diamonds with dimension length 0
-ggplot(data = diamonds) + 
-  geom_point(mapping = aes(x = x, y = depth))
+diamonds %>% mutate(volume = length_mm*width_mm) %>%
+ggplot() + 
+  geom_point(mapping = aes(x = length_mm, y = depth_mm, alpha = width_mm))
  
 ggplot(diamonds, aes(x=cut, fill=price)) +
       geom_bar(stat = "count")
@@ -41,9 +42,10 @@ ggplot(diamonds, aes(x=cut, fill=price)) +
 ## Exercise 2
 
 ```{r}
-
 diamonds <- diamonds %>%
-  mutate(table_mm = table_pct * width_mm / 100)
+  mutate(table_mm = table_pct * width_mm / 100) %>%
+  
+diamonds %>% mean(table_mm, is.na = TRUE)
 
 # Overall table_mm arithmetic mean?
 
@@ -71,8 +73,7 @@ _Do derivation on paper, unless you know how to write LaTeX code_
 ## Exercise 4
 
 ```{r}
-# Write gmean() command
-
+gmean <- function()
 
 
 ```
