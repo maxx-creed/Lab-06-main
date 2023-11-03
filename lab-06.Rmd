@@ -27,11 +27,14 @@ diamonds <- diamonds %>% rename(
 ## Exercise 1
 
 ```{r}
-# Do some preliminary investigations & cleaning
-
-
-
-
+diamonds %>% filter('x, y, z' == 0) %>%
+  count()
+#There are no diamonds with dimension length 0
+ggplot(data = diamonds) + 
+  geom_point(mapping = aes(x = x, y = depth))
+ 
+ggplot(diamonds, aes(x=cut, fill=price)) +
+      geom_bar(stat = "count")
 ```
 
 
